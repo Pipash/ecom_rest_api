@@ -17,9 +17,9 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->double('price', 10, 2);
-            $table->float('discount_price');
-            $table->integer('discount_percent');
-            $table->bigInteger('parent_product_id');
+            $table->float('discount_price')->nullable();
+            $table->integer('discount_percent')->nullable();
+            $table->bigInteger('parent_product_id')->nullable();
             $table->timestamps();
         });
     }

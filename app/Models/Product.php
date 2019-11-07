@@ -11,10 +11,10 @@ class Product extends Model
 
     public function children()
     {
-        $this->hasMany('Product', 'parent_product_id');
+        return $this->hasMany(static::class, 'parent_product_id');
     }
     public function parent()
     {
-        $this->belongsTo('Product', 'parent_product_id');
+        return $this->belongsTo(static::class, 'parent_product_id');
     }
 }
