@@ -16,6 +16,11 @@ class Order extends Model
      */
     protected $dates = ['order_date', 'estimated_delivery_date', 'shipment_date'];
 
+    /**
+     * Many to many relationship to Products
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function products()
     {
         return $this->belongsToMany('App\Models\Product');
