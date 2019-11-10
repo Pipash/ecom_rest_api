@@ -17,4 +17,8 @@ class Product extends Model
     {
         return $this->belongsTo(static::class, 'parent_product_id');
     }
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order');
+    }
 }

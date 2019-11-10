@@ -13,10 +13,23 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
-Route::get('products', 'Admin\ProductController@getAllProducts')->name('product');
-Route::get('product-group', 'Admin\ProductController@getAllProductGroups')->name('productGroup');
-Route::post('product/create', 'Admin\ProductController@create')->name('createProduct');
+Route::post('login', 'UserController@login');
+Route::post('signup', 'UserController@signup');
+
+Route::group([
+    'middleware' => 'auth:api'
+], function() {
+    Route::get('logout', 'UserController@logout');
+    Route::get('products', 'ProductController@getAllProducts')->name('allProducts');
+    Route::get('product/{id}', 'ProductController@getSingleProduct')->name('singleProduct');
+    Route::post('product/create', 'ProductController@create')->name('createProduct');
+    Route::get('product/edit/{id}', 'ProductController@getSingleProduct')->name('editProduct');
+    Route::post('product/update/{id}', 'ProductController@update')->name('updateProduct');
+    Route::delete('product/delete/{id}', 'ProductController@delete')->name('deleteProduct');
+    Route::get('user', 'UserController@user');
+    Route::post('place-order', 'UserController@placeOrder')->name('placeOrder');
+});
